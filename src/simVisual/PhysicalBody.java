@@ -74,6 +74,15 @@ public class PhysicalBody {
 	void setRad(double Rad) {
 		radius = Rad;
 	}
+	void reset() {
+		x = 0;
+		y = 0;
+		m = 1.0;
+		xAcc = 0;
+		yAcc = 0;
+		xVel = 0;
+		yVel = 0;
+	}
 	//getters
 	double getX() {
 		return x;
@@ -104,24 +113,24 @@ public class PhysicalBody {
 	}
 	//calculators
 	void setVelVector(double vVector, double vAngle) {
-		xVel = vVector*Math.cos(vAngle);
-		yVel = vVector*Math.sin(vAngle);
+		xVel = vVector*Math.cos((vAngle*2*Math.PI)/360.0);
+		yVel = vVector*Math.sin((vAngle*2*Math.PI)/360.0);
 	}
 	void setAccVector(double aVector, double aAngle) {
-		xAcc = aVector*Math.cos(aAngle);
-		yAcc = aVector*Math.sin(aAngle);
+		xAcc = aVector*Math.cos((aAngle*2*Math.PI)/360.0);
+		yAcc = aVector*Math.sin((aAngle*2*Math.PI)/360.0);
 	}
 	void calcVel(double dT) {
 		xVel = xVel + dT*xAcc;
-		yVel = yVel + dT*xAcc;
+		yVel = yVel + dT*yAcc;
 	}
 	void calcPosition(double dT) {
-		x += dT*xVel;
-		y += dT*yVel;
+		x = x + dT*xVel;
+		y = y + dT*yVel;
 	}
 	void calcAcc(double Force, double fAngle) {
-		double xForce = Force*Math.cos(fAngle);
-		double yForce = Force*Math.sin(fAngle);
+		double xForce = Force*Math.cos((fAngle*2*Math.PI)/360.0);
+		double yForce = Force*Math.sin((fAngle*2*Math.PI)/360.0);
 		//
 		xAcc = xForce / m;
 		yAcc = yForce / m;
