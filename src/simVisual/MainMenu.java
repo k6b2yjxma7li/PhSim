@@ -15,31 +15,16 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class MainMenu extends JFrame {
 	public MenuBar menuBar = new MenuBar("EN");
-	//public ContentPanel mainPanel;
-	public AnimationPanel animation = new AnimationPanel();
-	public PhysicalBody ball = new PhysicalBody();
-	public void parameterSet(int X, int Y, double xV, double yV, double Rad, double F, double angl) {
-		ball.setRad(Rad);
-		ball.setVx(xV);
-		ball.setVy(yV);
-		ball.setX(X);
-		ball.setY(Y);
-		ball.setAx(0);
-		ball.setAy(9.80655);
-	}
 	//
 	public MainMenu() throws HeadlessException {
 		this.setLayout(new BorderLayout());
 		//
-		//mainPanel = new ContentPanel(this.getWidth(), this.getHeight());
 		this.setJMenuBar(menuBar);
-		this.add(animation);
-		//this.add(mainPanel, BorderLayout.CENTER);
-		//mainPanel.setVisible(true);
-		//mainPanel.add(animation);
 		menuBar.fastSimButton.setEnabled(false);
 		menuBar.slowSimButton.setEnabled(false);
 		menuBar.stopSimButton.setEnabled(false);
+		menuBar.normSimButton.setEnabled(false);
+		//
 		menuBar.exitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -49,13 +34,6 @@ public class MainMenu extends JFrame {
 		menuBar.startSimButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				parameterSet(300, 500, 1.0, 1.0, 5.0, 0, 0);
-				animation = new AnimationPanel();
-				animation.timer.stop();
-				//mainPanel.remove(animation);
-				//mainPanel.repaint();
-				animation.timer.start();
-				animation.repaint();
 				menuBar.startSimButton.setEnabled(false);
 				menuBar.fastSimButton.setEnabled(true);
 				menuBar.slowSimButton.setEnabled(true);
@@ -69,9 +47,7 @@ public class MainMenu extends JFrame {
 				menuBar.fastSimButton.setEnabled(false);
 				menuBar.slowSimButton.setEnabled(false);
 				menuBar.stopSimButton.setEnabled(false);
-				animation.timer.stop();
-				//mainPanel.repaint();
-				animation.repaint();
+				menuBar.normSimButton.setEnabled(false);
 			} 
 		});
 		menuBar.slowSimButton.addActionListener(new ActionListener() {
@@ -79,6 +55,7 @@ public class MainMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				menuBar.slowSimButton.setEnabled(false);
 				menuBar.fastSimButton.setEnabled(true);
+				menuBar.normSimButton.setEnabled(true);
 			}
 		});
 		menuBar.fastSimButton.addActionListener(new ActionListener() {
@@ -86,6 +63,15 @@ public class MainMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				menuBar.fastSimButton.setEnabled(false);
 				menuBar.slowSimButton.setEnabled(true);
+				menuBar.normSimButton.setEnabled(true);
+			}
+		});
+		menuBar.normSimButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menuBar.fastSimButton.setEnabled(true);
+				menuBar.slowSimButton.setEnabled(true);
+				menuBar.normSimButton.setEnabled(false);
 			}
 		});
 	}

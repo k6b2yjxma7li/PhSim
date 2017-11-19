@@ -116,8 +116,8 @@ public class PhysicalBody {
 		yVel = yVel + dT*xAcc;
 	}
 	void calcPosition(double dT) {
-		x = x + dT*xVel;
-		y = y + dT*yVel;
+		x += dT*xVel;
+		y += dT*yVel;
 	}
 	void calcAcc(double Force, double fAngle) {
 		double xForce = Force*Math.cos(fAngle);

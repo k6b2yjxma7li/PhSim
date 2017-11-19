@@ -21,6 +21,7 @@ public class MenuBar extends JMenuBar {
 	public JMenuItem stopSimButton;
 	public JMenuItem slowSimButton;
 	public JMenuItem fastSimButton;
+	public JMenuItem normSimButton;
 	//
 	public MenuBar(String lang) {//EN - English, PL - Polish
 		switch(lang) {
@@ -35,6 +36,7 @@ public class MenuBar extends JMenuBar {
 				stopSimButton = new JMenuItem("Stop");
 				slowSimButton = new JMenuItem("Half speed");
 				fastSimButton = new JMenuItem("Double speed");
+				normSimButton = new JMenuItem("Normal speed");
 				break;
 			}
 			case "PL":
@@ -48,6 +50,7 @@ public class MenuBar extends JMenuBar {
 				stopSimButton = new JMenuItem("Stop");
 				slowSimButton = new JMenuItem("Połowa prędkości");
 				fastSimButton = new JMenuItem("Dwukrotna prędkość");
+				normSimButton = new JMenuItem("Normalna prędkość");
 				break;
 			}
 		}
@@ -60,5 +63,6 @@ public class MenuBar extends JMenuBar {
 		simMenu.add(stopSimButton);
 		simMenu.add(slowSimButton);
 		simMenu.add(fastSimButton);
+		simMenu.add(normSimButton);
 	}
 }
